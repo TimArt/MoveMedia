@@ -1,0 +1,339 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		72DF8AAC22F6A3F600E0DC83 /* MoveMedia.c in Sources */ = {isa = PBXBuildFile; fileRef = 72DF8AAB22F6A3F600E0DC83 /* MoveMedia.c */; };
+		72DF8AB422F6A43700E0DC83 /* MoveMediaKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 72DF8AB322F6A43700E0DC83 /* MoveMediaKeys.m */; };
+		72DF8AB722F6AA7A00E0DC83 /* libpsmoveapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DF8AB622F6AA7A00E0DC83 /* libpsmoveapi.a */; };
+		72DF8AB922F6AAE300E0DC83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DF8AB822F6AAE300E0DC83 /* Foundation.framework */; };
+		72DF8ABB22F6AAEB00E0DC83 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DF8ABA22F6AAEB00E0DC83 /* AVFoundation.framework */; };
+		72DF8ABD22F6AAF200E0DC83 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DF8ABC22F6AAF200E0DC83 /* IOKit.framework */; };
+		72DF8ABF22F6AAFF00E0DC83 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DF8ABE22F6AAFF00E0DC83 /* CoreFoundation.framework */; };
+		72DF8AC122F6AB0D00E0DC83 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DF8AC022F6AB0D00E0DC83 /* IOBluetooth.framework */; };
+		72DF8AC322F6AB4C00E0DC83 /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DF8AC222F6AB4C00E0DC83 /* libc++.1.tbd */; };
+		72DF8AC522F6AB5E00E0DC83 /* libSystem.B.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DF8AC422F6AB5D00E0DC83 /* libSystem.B.tbd */; };
+		72DF8AC722F6AB6C00E0DC83 /* libobjc.A.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DF8AC622F6AB6C00E0DC83 /* libobjc.A.tbd */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		72DF8AA622F6A3F600E0DC83 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		72DF8AA822F6A3F600E0DC83 /* MoveMedia */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MoveMedia; sourceTree = BUILT_PRODUCTS_DIR; };
+		72DF8AAB22F6A3F600E0DC83 /* MoveMedia.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = MoveMedia.c; sourceTree = "<group>"; usesTabs = 1; };
+		72DF8AB222F6A43700E0DC83 /* MoveMediaKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveMediaKeys.h; sourceTree = "<group>"; usesTabs = 1; };
+		72DF8AB322F6A43700E0DC83 /* MoveMediaKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveMediaKeys.m; sourceTree = "<group>"; usesTabs = 1; };
+		72DF8AB622F6AA7A00E0DC83 /* libpsmoveapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpsmoveapi.a; path = psmoveapi/lib/libpsmoveapi.a; sourceTree = "<group>"; };
+		72DF8AB822F6AAE300E0DC83 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		72DF8ABA22F6AAEB00E0DC83 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		72DF8ABC22F6AAF200E0DC83 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		72DF8ABE22F6AAFF00E0DC83 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		72DF8AC022F6AB0D00E0DC83 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
+		72DF8AC222F6AB4C00E0DC83 /* libc++.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.1.tbd"; path = "usr/lib/libc++.1.tbd"; sourceTree = SDKROOT; };
+		72DF8AC422F6AB5D00E0DC83 /* libSystem.B.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libSystem.B.tbd; path = usr/lib/libSystem.B.tbd; sourceTree = SDKROOT; };
+		72DF8AC622F6AB6C00E0DC83 /* libobjc.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libobjc.A.tbd; path = usr/lib/libobjc.A.tbd; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		72DF8AA522F6A3F600E0DC83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72DF8AB922F6AAE300E0DC83 /* Foundation.framework in Frameworks */,
+				72DF8ABB22F6AAEB00E0DC83 /* AVFoundation.framework in Frameworks */,
+				72DF8ABD22F6AAF200E0DC83 /* IOKit.framework in Frameworks */,
+				72DF8ABF22F6AAFF00E0DC83 /* CoreFoundation.framework in Frameworks */,
+				72DF8AC122F6AB0D00E0DC83 /* IOBluetooth.framework in Frameworks */,
+				72DF8AC322F6AB4C00E0DC83 /* libc++.1.tbd in Frameworks */,
+				72DF8AC522F6AB5E00E0DC83 /* libSystem.B.tbd in Frameworks */,
+				72DF8AC722F6AB6C00E0DC83 /* libobjc.A.tbd in Frameworks */,
+				72DF8AB722F6AA7A00E0DC83 /* libpsmoveapi.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		72DF8A9F22F6A3F600E0DC83 = {
+			isa = PBXGroup;
+			children = (
+				72DF8AAA22F6A3F600E0DC83 /* MoveMedia */,
+				72DF8AA922F6A3F600E0DC83 /* Products */,
+				72DF8AB522F6AA7900E0DC83 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		72DF8AA922F6A3F600E0DC83 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				72DF8AA822F6A3F600E0DC83 /* MoveMedia */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		72DF8AAA22F6A3F600E0DC83 /* MoveMedia */ = {
+			isa = PBXGroup;
+			children = (
+				72DF8AB222F6A43700E0DC83 /* MoveMediaKeys.h */,
+				72DF8AB322F6A43700E0DC83 /* MoveMediaKeys.m */,
+				72DF8AAB22F6A3F600E0DC83 /* MoveMedia.c */,
+			);
+			path = MoveMedia;
+			sourceTree = "<group>";
+		};
+		72DF8AB522F6AA7900E0DC83 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72DF8AC622F6AB6C00E0DC83 /* libobjc.A.tbd */,
+				72DF8AC422F6AB5D00E0DC83 /* libSystem.B.tbd */,
+				72DF8AC222F6AB4C00E0DC83 /* libc++.1.tbd */,
+				72DF8AC022F6AB0D00E0DC83 /* IOBluetooth.framework */,
+				72DF8ABE22F6AAFF00E0DC83 /* CoreFoundation.framework */,
+				72DF8ABC22F6AAF200E0DC83 /* IOKit.framework */,
+				72DF8ABA22F6AAEB00E0DC83 /* AVFoundation.framework */,
+				72DF8AB822F6AAE300E0DC83 /* Foundation.framework */,
+				72DF8AB622F6AA7A00E0DC83 /* libpsmoveapi.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		72DF8AA722F6A3F600E0DC83 /* MoveMedia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72DF8AAF22F6A3F600E0DC83 /* Build configuration list for PBXNativeTarget "MoveMedia" */;
+			buildPhases = (
+				72DF8AA422F6A3F600E0DC83 /* Sources */,
+				72DF8AA522F6A3F600E0DC83 /* Frameworks */,
+				72DF8AA622F6A3F600E0DC83 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MoveMedia;
+			productName = MoveMedia;
+			productReference = 72DF8AA822F6A3F600E0DC83 /* MoveMedia */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		72DF8AA022F6A3F600E0DC83 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1030;
+				ORGANIZATIONNAME = "‽";
+				TargetAttributes = {
+					72DF8AA722F6A3F600E0DC83 = {
+						CreatedOnToolsVersion = 10.3;
+					};
+				};
+			};
+			buildConfigurationList = 72DF8AA322F6A3F600E0DC83 /* Build configuration list for PBXProject "MoveMedia" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 72DF8A9F22F6A3F600E0DC83;
+			productRefGroup = 72DF8AA922F6A3F600E0DC83 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				72DF8AA722F6A3F600E0DC83 /* MoveMedia */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		72DF8AA422F6A3F600E0DC83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72DF8AAC22F6A3F600E0DC83 /* MoveMedia.c in Sources */,
+				72DF8AB422F6A43700E0DC83 /* MoveMediaKeys.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		72DF8AAD22F6A3F600E0DC83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		72DF8AAE22F6A3F600E0DC83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		72DF8AB022F6A3F600E0DC83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/psmoveapi/include";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/psmoveapi/lib",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		72DF8AB122F6A3F600E0DC83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/psmoveapi/include";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/psmoveapi/lib",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		72DF8AA322F6A3F600E0DC83 /* Build configuration list for PBXProject "MoveMedia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72DF8AAD22F6A3F600E0DC83 /* Debug */,
+				72DF8AAE22F6A3F600E0DC83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		72DF8AAF22F6A3F600E0DC83 /* Build configuration list for PBXNativeTarget "MoveMedia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72DF8AB022F6A3F600E0DC83 /* Debug */,
+				72DF8AB122F6A3F600E0DC83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 72DF8AA022F6A3F600E0DC83 /* Project object */;
+}
