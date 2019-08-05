@@ -35,7 +35,7 @@ enum gesture {
 /*
  * Converts a gesture into its keytype value.
  */
-int gesture_to_keytype(enum gesture gesture)
+static int gesture_to_keytype(enum gesture gesture)
 {
 	return gesture;
 }
@@ -43,7 +43,7 @@ int gesture_to_keytype(enum gesture gesture)
 /*
  * Detects the gesture being performed.
  */
-enum gesture detect_gesture(PSMove *move)
+static enum gesture detect_gesture(PSMove *move)
 {
 	// Orientation-based gestures
 	float w, x, y, z;
@@ -68,7 +68,7 @@ enum gesture detect_gesture(PSMove *move)
 /*
  * Handles executing the given gesture.
  */
-void handle_gesture(PSMove *move, enum gesture gesture)
+static void handle_gesture(PSMove *move, enum gesture gesture)
 {
 	static enum gesture last_gesture = GESTURE_NONE;
 	static uint64_t start_time;
@@ -114,6 +114,8 @@ void handle_gesture(PSMove *move, enum gesture gesture)
 		// Set successive repeat interval
 		start_time = current_time;
 		repeat_interval = GESTURE_REPEAT_INTERVAL_SUCCESSIVE_NSEC;
+		psmove_set_rumble(move, GESTURE_RUMBLE_INTENSITY);
+		psmove_update_leds(move);
 	}
 }
 
