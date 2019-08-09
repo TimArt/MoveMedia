@@ -100,7 +100,7 @@ static void handle_gesture(PSMove *move, enum gesture gesture)
 		}
 		
 		last_gesture = gesture;
-		// Gesture repeat
+	// Gesture repeat
 	} else if (gesture != GESTURE_NONE) {
 		keytype = gesture_to_keytype(gesture);
 		// Check repeat interval
