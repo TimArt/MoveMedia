@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include <time.h>
 
 #include "psmove.h"
@@ -20,7 +21,10 @@
 #define GESTURE_THRESHOLD_TAP 5.0
 #define GESTURE_REPEAT_INTERVAL_INITIAL_NSEC 450000000
 #define GESTURE_REPEAT_INTERVAL_SUCCESSIVE_NSEC 100000000
-#define GESTURE_RUMBLE_INTENSITY 72
+#define GESTURE_RUMBLE_INTENSITY_ACTIVE 72
+#define GESTURE_RUMBLE_INTENSITY_INACTIVE 0
+#define GESTURE_LEDS_TRACKING_ON 0, 0, 0
+#define GESTURE_LEDS_TRACKING_OFF 255, 0, 0
 
 // Gestures with values of keytype
 enum gesture {
@@ -82,8 +86,7 @@ static void handle_gesture(PSMove *move, enum gesture gesture)
 		if (last_gesture != GESTURE_NONE) {
 			keytype = gesture_to_keytype(last_gesture);
 			release_key(keytype);
-			psmove_set_rumble(move, 0);
-			psmove_update_leds(move);
+			psmove_set_rumble(move, GESTURE_RUMBLE_INTENSITY_INACTIVE);
 		}
 		
 		// Gesture start
@@ -93,12 +96,11 @@ static void handle_gesture(PSMove *move, enum gesture gesture)
 			start_time = clock_gettime_nsec_np(CLOCK_MONOTONIC);
 			repeat_interval = GESTURE_REPEAT_INTERVAL_INITIAL_NSEC;
 			press_key(keytype);
-			psmove_set_rumble(move, GESTURE_RUMBLE_INTENSITY);
-			psmove_update_leds(move);
+			psmove_set_rumble(move, GESTURE_RUMBLE_INTENSITY_ACTIVE);
 		}
 		
 		last_gesture = gesture;
-	// Gesture repeat
+		// Gesture repeat
 	} else if (gesture != GESTURE_NONE) {
 		keytype = gesture_to_keytype(gesture);
 		// Check repeat interval
@@ -114,8 +116,6 @@ static void handle_gesture(PSMove *move, enum gesture gesture)
 		// Set successive repeat interval
 		start_time = current_time;
 		repeat_interval = GESTURE_REPEAT_INTERVAL_SUCCESSIVE_NSEC;
-		psmove_set_rumble(move, GESTURE_RUMBLE_INTENSITY);
-		psmove_update_leds(move);
 	}
 }
 
@@ -144,19 +144,38 @@ int main(int argc, const char *argv[])
 	}
 	
 	// Poll the Move controller
+	bool is_tracking = true;
 	while (true) {
 		if (!psmove_poll(move)) continue;
 		
+		// Get button events
+		unsigned int buttons_pressed, buttons_released;
+		psmove_get_button_events(move, &buttons_pressed, &buttons_released);
+		
 		// Reset orientation with move button
-		unsigned int buttons = psmove_get_buttons(move);
-		if (buttons & Btn_MOVE) {
+		if (buttons_released & Btn_MOVE) {
 			psmove_reset_orientation(move);
-			printf("Set the default orientation.\n");
+			printf("Set default orientation.\n");
+		}
+		
+		// Update tracking state
+		if (buttons_released & Btn_TRIANGLE) {
+			is_tracking = true;
+			psmove_set_leds(move, GESTURE_LEDS_TRACKING_ON);
+		}
+		if (buttons_released & Btn_SQUARE) {
+			is_tracking = false;
+			psmove_set_leds(move, GESTURE_LEDS_TRACKING_OFF);
 		}
 		
 		// Handle gestures
-		enum gesture gesture = detect_gesture(move);
-		handle_gesture(move, gesture);
+		if (is_tracking) {
+			enum gesture gesture = detect_gesture(move);
+			handle_gesture(move, gesture);
+		}
+		
+		// Refresh LED and rumble state
+		psmove_update_leds(move);
 	}
 	
 	// Disconnect the Move controller
