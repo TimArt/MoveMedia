@@ -37,6 +37,7 @@ MoveMedia is an application which allows a user to control MacOS Media functions
 - Apple’s AppKit and IOKit libraries : for MacOS and system accessibility functions.
 
 ### PlayStation Move Controller Bluetooth Setup Instructions
+**These instructions are based on [documentation from the PS Move API]**
 - Connect the PlayStation Move Controller to the computer via a USB connection.
 - Turn on Bluetooth on your Mac.
 - Navigate to the `bin` folder within the main project directory in the command line (using `cd` command).
@@ -78,41 +79,45 @@ Once the PlayStation Move controller has been comfortably and securely been affi
 - Unzip the source.
 - Open the Xcode Project file : `MoveMedia.xcodeproj `
 - Choose the Xcode Build command (Product Menu -> Build). Build output will go to `/Build/Products/Debug/MoveMedia`.
-- Optionally run the program by choosing the Xcode Run command (Product Menu -> Run). This will run the program located at `/Build/Products/Debug/MoveMedia`
+- Refer to the above section (Running from Our Pre-Compiled Program on Mac) for instructions on how to run your compiled executable, **but note that your compiled executable will be located at the path:** `/Build/Products/Debug/MoveMedia`
 
 #### PS Move API Build Instructions
 **(Follow these instructions if you want to rebuild the PSMoveAPI library. This is not a required build step for building or running our source code program, but these steps may be useful for any further extensions to the project that want to extend PSMoveAPI functionality or change how the library is related to our source code.)**
+
+**These instructions are based on [documentation from the PS Move API]**
 
 The following describes building the PS Move API as a static library as opposed to the default dynamic library build scheme.
 
 Commands to run are designated by code formatted text: `a command to run`
 All line numbers refer to the original, unedited file.
 
-1. Clone the PS Move API repository
+1. Install dependencies
+    `brew install cmake libtool automake`
+2. Clone the PS Move API repository
     `git clone https://github.com/thp/psmoveapi.git`
-2. Change into the repository's directory
+3. Change into the repository's directory
     `cd psmoveapi`
-3. Checkout the 4.0.7 tag
+4. Checkout the 4.0.7 tag
     `git checkout 4.0.7`
-4. Change the git modules to use HTTPS.
+5. Change the git modules to use HTTPS.
     Edit ./.gitmodules
     Replace "git://" with "https://" (#3 and #6)
-5. Make psmoveapi\_tracker static
+6. Make psmoveapi\_tracker static
     Edit ./src/tracker/CMakeLists.txt
     Replace "SHARED" with "STATIC" on the line (#147) starting with "add\_library(psmoveapi\_tracker ..."
     Delete the line (#154) starting with "set\_target\_properties(psmoveapi\_tracker ..." and the one below it (#155)
-6. Make psmoveapi static
+7. Make psmoveapi static
     Edit ./src/CMakeLists.txt
     Replace "SHARED" with "STATIC" on the line (#162) starting with "add\_library(psmoveapi ..."
     Delete the line (#164) starting with "set\_target\_properties(psmoveapi ..." and the one below it (#165)
-7. Fix the build script
+8. Fix the build script
     Edit ./scripts/macos/build-macos
     Delete the block (from #55 to #62) starting with "# Patch for Mac OS X deprecation ..." and ending with "git checkout pr7266"
     Change "ON" to "OFF" on the line (#102) starting with "cmake -DPSMOVE\_USE\_PS3EYE\_DRIVER=..."
     Insert the line (between #102 and #103) "      -DPSMOVE\_USE\_PSEYE=OFF \" between it (#102) and the one below it (#103)
     Change "ON" to "OFF" on the line (#103) starting with "-DPSMOVE\_BUILD\_TRACKER=..."
-8. Run the build script
+9. Run the build script
     `bash -e -x ./scripts/macos/build-macos`
-9. Copy the resources
+10. Copy the resources
     The include headers are "psmove.h" and "psmoveapi.h" in ./include and "psmove\_config.h" in ./build
     The static library is "libpsmoveapi.a" in ./build
