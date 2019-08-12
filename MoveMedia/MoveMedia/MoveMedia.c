@@ -16,9 +16,9 @@
 #include "MoveMediaKeys.h"
 
 // Gesture-related constants
-#define GESTURE_THRESHOLD_RAISE 0.3
+#define GESTURE_THRESHOLD_RAISE 0.2
 #define GESTURE_THRESHOLD_TILT 0.2
-#define GESTURE_THRESHOLD_TAP 5.0
+#define GESTURE_THRESHOLD_TAP 4.0
 #define GESTURE_REPEAT_INTERVAL_INITIAL_NSEC 450000000
 #define GESTURE_REPEAT_INTERVAL_SUCCESSIVE_NSEC 100000000
 #define GESTURE_RUMBLE_INTENSITY_ACTIVE 72
@@ -49,6 +49,13 @@ static int gesture_to_keytype(enum gesture gesture)
  */
 static enum gesture detect_gesture(PSMove *move)
 {
+
+	// Acceleration-based gestures
+	float ax, ay, az;
+	psmove_get_accelerometer_frame(move, Frame_SecondHalf, &ax, &ay, &az);
+	
+	if (az > GESTURE_THRESHOLD_TAP) return GESTURE_TAP;
+
 	// Orientation-based gestures
 	float w, x, y, z;
 	psmove_get_orientation(move, &w, &x, &y, &z);
@@ -58,12 +65,6 @@ static enum gesture detect_gesture(PSMove *move)
 	
 	if (x > GESTURE_THRESHOLD_TILT) return GESTURE_TILT_UP;
 	if (x < -GESTURE_THRESHOLD_TILT) return GESTURE_TILT_DOWN;
-	
-	// Acceleration-based gestures
-	float ax, ay, az;
-	psmove_get_accelerometer_frame(move, Frame_SecondHalf, &ax, &ay, &az);
-	
-	if (az > GESTURE_THRESHOLD_TAP) return GESTURE_TAP;
 	
 	// Default
 	return GESTURE_NONE;
@@ -143,8 +144,12 @@ int main(int argc, const char *argv[])
 		return EXIT_FAILURE;
 	}
 	
+	// Initially, do not track gestures
+	bool is_tracking = false;
+	psmove_set_leds(move, GESTURE_LEDS_TRACKING_OFF);
+	psmove_update_leds(move);
+	
 	// Poll the Move controller
-	bool is_tracking = true;
 	while (true) {
 		if (!psmove_poll(move)) continue;
 		
