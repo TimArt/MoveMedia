@@ -13,6 +13,14 @@ MoveMedia is an application which allows a user to control MacOS Media functions
 
 **psmoveapi** : Directory containing the PS Move API header files and a pre-compiled static library of the PS Move API.
 
+### Source Code Overview (MoveMedia Directory)
+
+**MoveMedia.c** : The main program which interprets gestures from the PlayStation Move controller and triggers MacOS media commands.
+
+**MoveMediaKeys.h** : Functions to press and release media keys virtually using accessibility features. Provides C/C++ interface to access Objective-C functionality of MacOS APIs.
+
+**MoveMediaKeys.m** : Functions to generate key events given certain key types.
+
 
 ## Building, Running, and Using Our Prototype
 
