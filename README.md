@@ -33,11 +33,11 @@ MoveMedia is an application which allows a user to control MacOS Media functions
 - Our digital project folder including source code and pre-compiled programs.
 
 ### External Libraries Used (Already Included In Our Submitted Project Folder)
-- PS Move API by Thomas Perl (and its dependencies) : [https://github.com/thp/psmoveapi] : for communicating with the PlayStation Move Controllers
+- PS Move API by Thomas Perl (and its dependencies) : [https://github.com/thp/psmoveapi](https://github.com/thp/psmoveapi) : for communicating with the PlayStation Move Controllers
 - Apple’s AppKit and IOKit libraries : for MacOS and system accessibility functions.
 
 ### PlayStation Move Controller Bluetooth Setup Instructions
-**These instructions are based on [documentation from the PS Move API]**
+**These instructions are based on [documentation from the PS Move API](https://github.com/thp/psmoveapi/blob/master/docs/pairing.rst)**
 - Connect the PlayStation Move Controller to the computer via a USB connection.
 - Turn on Bluetooth on your Mac.
 - Navigate to the `bin` folder within the main project directory in the command line (using `cd` command).
@@ -52,7 +52,7 @@ MoveMedia is an application which allows a user to control MacOS Media functions
 - Navigate to the `bin` directory within the main project directory in the command line (using `cd` command).
 - Run the MoveMedia Program : `./MoveMedia`
 - You may be prompted to give the program Accessibility privileges with your computer.
-- Click allow and/or navigate to System Preferences -> Security & Privacy -> Privacy (tab along top) -> Accessibility (item along left sidebar) -> Scroll through the items in the right side window till you find “MoveMedia” -> Check the checkbox (You may need to first clock the lock icon in the bottom left corner of this window and provide your password to allow changes).
+- Click allow and/or navigate to System Preferences -\> Security & Privacy -\> Privacy (tab along top) -\> Accessibility (item along left sidebar) -\> Scroll through the items in the right side window till you find “MoveMedia” -\> Check the checkbox (You may need to first clock the lock icon in the bottom left corner of this window and provide your password to allow changes).
 
 ### Prototype Usage Instructions
 Once the PlayStation Move controller has been comfortably and securely been affixed to a foot, has been connected via bluetooth to the computer, and the program is running on the computer:
@@ -77,14 +77,14 @@ Once the PlayStation Move controller has been comfortably and securely been affi
 ### Optional Build Steps
 #### Building MoveMedia Program from Our Source (using pre-built PS Move API library)
 - Unzip the source.
-- Open the Xcode Project file : `MoveMedia.xcodeproj `
-- Choose the Xcode Build command (Product Menu -> Build). Build output will go to `/Build/Products/Debug/MoveMedia`.
+- Open the Xcode Project file : `MoveMedia.xcodeproj `
+- Choose the Xcode Build command (Product Menu -\> Build). Build output will go to `/Build/Products/Debug/MoveMedia`.
 - Refer to the above section (Running from Our Pre-Compiled Program on Mac) for instructions on how to run your compiled executable, **but note that your compiled executable will be located at the path:** `/Build/Products/Debug/MoveMedia`
 
 #### PS Move API Build Instructions
 **(Follow these instructions if you want to rebuild the PSMoveAPI library. This is not a required build step for building or running our source code program, but these steps may be useful for any further extensions to the project that want to extend PSMoveAPI functionality or change how the library is related to our source code.)**
 
-**These instructions are based on [documentation from the PS Move API]**
+**These instructions are based on [documentation from the PS Move API](https://github.com/thp/psmoveapi/blob/master/docs/build.rst)**
 
 The following describes building the PS Move API as a static library as opposed to the default dynamic library build scheme.
 
@@ -114,7 +114,7 @@ All line numbers refer to the original, unedited file.
     Edit ./scripts/macos/build-macos
     Delete the block (from #55 to #62) starting with "# Patch for Mac OS X deprecation ..." and ending with "git checkout pr7266"
     Change "ON" to "OFF" on the line (#102) starting with "cmake -DPSMOVE\_USE\_PS3EYE\_DRIVER=..."
-    Insert the line (between #102 and #103) "      -DPSMOVE\_USE\_PSEYE=OFF \" between it (#102) and the one below it (#103)
+    Insert the line (between #102 and #103) "      -DPSMOVE\_USE\_PSEYE=OFF " between it (#102) and the one below it (#103)
     Change "ON" to "OFF" on the line (#103) starting with "-DPSMOVE\_BUILD\_TRACKER=..."
 9. Run the build script
     `bash -e -x ./scripts/macos/build-macos`
