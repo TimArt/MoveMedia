@@ -64,7 +64,7 @@ static enum gesture detect_gesture(PSMove *move)
 	
 	if (x > GESTURE_THRESHOLD_TILT) return GESTURE_TILT_UP;
 	if (x < -GESTURE_THRESHOLD_TILT) return GESTURE_TILT_DOWN;
-
+	
 	// Default
 	return GESTURE_NONE;
 }
