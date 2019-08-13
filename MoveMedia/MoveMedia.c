@@ -19,12 +19,12 @@
 #define GESTURE_THRESHOLD_RAISE 0.2
 #define GESTURE_THRESHOLD_TILT 0.2
 #define GESTURE_THRESHOLD_TAP 4.0
-#define GESTURE_REPEAT_INTERVAL_INITIAL_NSEC 450000000
-#define GESTURE_REPEAT_INTERVAL_SUCCESSIVE_NSEC 100000000
-#define GESTURE_RUMBLE_INTENSITY_ACTIVE 72
-#define GESTURE_RUMBLE_INTENSITY_INACTIVE 0
-#define GESTURE_LEDS_TRACKING_ON 0, 0, 0
-#define GESTURE_LEDS_TRACKING_OFF 255, 0, 0
+#define GESTURE_ACTION_START_RUMBLE 72
+#define GESTURE_ACTION_STOP_RUMBLE 0
+#define GESTURE_ACTION_REPEAT_INTERVAL_INITIAL_NSEC 450000000
+#define GESTURE_ACTION_REPEAT_INTERVAL_SUCCESSIVE_NSEC 100000000
+#define GESTURE_DETECTION_ACTIVE_LEDS 0, 0, 0
+#define GESTURE_DETECTION_INACTIVE_LEDS 255, 0, 0
 
 // Gestures with values of keytype
 enum gesture {
@@ -49,13 +49,12 @@ static int gesture_to_keytype(enum gesture gesture)
  */
 static enum gesture detect_gesture(PSMove *move)
 {
-
 	// Acceleration-based gestures
 	float ax, ay, az;
 	psmove_get_accelerometer_frame(move, Frame_SecondHalf, &ax, &ay, &az);
 	
 	if (az > GESTURE_THRESHOLD_TAP) return GESTURE_TAP;
-
+	
 	// Orientation-based gestures
 	float w, x, y, z;
 	psmove_get_orientation(move, &w, &x, &y, &z);
@@ -65,7 +64,7 @@ static enum gesture detect_gesture(PSMove *move)
 	
 	if (x > GESTURE_THRESHOLD_TILT) return GESTURE_TILT_UP;
 	if (x < -GESTURE_THRESHOLD_TILT) return GESTURE_TILT_DOWN;
-	
+
 	// Default
 	return GESTURE_NONE;
 }
@@ -87,7 +86,7 @@ static void handle_gesture(PSMove *move, enum gesture gesture)
 		if (last_gesture != GESTURE_NONE) {
 			keytype = gesture_to_keytype(last_gesture);
 			release_key(keytype);
-			psmove_set_rumble(move, GESTURE_RUMBLE_INTENSITY_INACTIVE);
+			psmove_set_rumble(move, GESTURE_ACTION_STOP_RUMBLE);
 		}
 		
 		// Gesture start
@@ -95,9 +94,9 @@ static void handle_gesture(PSMove *move, enum gesture gesture)
 			keytype = gesture_to_keytype(gesture);
 			// Set intital repeat interval
 			start_time = clock_gettime_nsec_np(CLOCK_MONOTONIC);
-			repeat_interval = GESTURE_REPEAT_INTERVAL_INITIAL_NSEC;
+			repeat_interval = GESTURE_ACTION_REPEAT_INTERVAL_INITIAL_NSEC;
 			press_key(keytype);
-			psmove_set_rumble(move, GESTURE_RUMBLE_INTENSITY_ACTIVE);
+			psmove_set_rumble(move, GESTURE_ACTION_START_RUMBLE);
 		}
 		
 		last_gesture = gesture;
@@ -116,14 +115,14 @@ static void handle_gesture(PSMove *move, enum gesture gesture)
 		
 		// Set successive repeat interval
 		start_time = current_time;
-		repeat_interval = GESTURE_REPEAT_INTERVAL_SUCCESSIVE_NSEC;
+		repeat_interval = GESTURE_ACTION_REPEAT_INTERVAL_SUCCESSIVE_NSEC;
 	}
 }
 
 /*
  * Connects, configures, then polls the Move controller for gestures.
  */
-int main(int argc, const char *argv[])
+int main(int argc, char *argv[])
 {
 	// Check the Move controller connection
 	PSMove *move = psmove_connect();
@@ -144,12 +143,9 @@ int main(int argc, const char *argv[])
 		return EXIT_FAILURE;
 	}
 	
-	// Initially, do not track gestures
-	bool is_tracking = false;
-	psmove_set_leds(move, GESTURE_LEDS_TRACKING_OFF);
-	psmove_update_leds(move);
-	
 	// Poll the Move controller
+	bool is_detecting = false;
+	psmove_set_leds(move, GESTURE_DETECTION_INACTIVE_LEDS);
 	while (true) {
 		if (!psmove_poll(move)) continue;
 		
@@ -157,24 +153,21 @@ int main(int argc, const char *argv[])
 		unsigned int buttons_pressed, buttons_released;
 		psmove_get_button_events(move, &buttons_pressed, &buttons_released);
 		
-		// Reset orientation with move button
+		// Update detection state
 		if (buttons_released & Btn_MOVE) {
+			is_detecting = true;
+			psmove_set_leds(move, GESTURE_DETECTION_ACTIVE_LEDS);
+			// Reset orientation
 			psmove_reset_orientation(move);
 			printf("Set default orientation.\n");
 		}
-		
-		// Update tracking state
-		if (buttons_released & Btn_TRIANGLE) {
-			is_tracking = true;
-			psmove_set_leds(move, GESTURE_LEDS_TRACKING_ON);
-		}
 		if (buttons_released & Btn_SQUARE) {
-			is_tracking = false;
-			psmove_set_leds(move, GESTURE_LEDS_TRACKING_OFF);
+			is_detecting = false;
+			psmove_set_leds(move, GESTURE_DETECTION_INACTIVE_LEDS);
 		}
 		
 		// Handle gestures
-		if (is_tracking) {
+		if (is_detecting) {
 			enum gesture gesture = detect_gesture(move);
 			handle_gesture(move, gesture);
 		}
