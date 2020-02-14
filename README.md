@@ -1,5 +1,10 @@
 # MoveMedia
-MoveMedia is an application which allows a user to control MacOS Media functions with foot gestures. The application makes use of PlayStation Move controllers as the motion sensing hardware and uses the [PS Move API by Thomas Perl](https://github.com/thp/psmoveapi) to communicate with PlayStation Move controllers. It uses Apple's AppKit and IOKit libraries and MacOS system accessibility functions to send media commands such as volume up, volume down, play/pause, etc.
+MoveMedia is an accessibility prototype application which allows a user to control MacOS Media functions with foot gestures. The application makes use of PlayStation Move controllers as the motion sensing hardware and uses the [PS Move API by Thomas Perl](https://github.com/thp/psmoveapi) to communicate with PlayStation Move controllers. It uses Apple's AppKit and IOKit libraries and MacOS system accessibility functions to send media commands such as volume up, volume down, play/pause, etc.
+
+## Demonstration Video
+[![MoveMedia Demonstration](https://img.youtube.com/vi/vUFYraKgnJg/0.jpg)](https://www.youtube.com/watch?v=vUFYraKgnJg)
+
+https://www.youtube.com/watch?v=vUFYraKgnJg
 
 ## Repository Overview
 
